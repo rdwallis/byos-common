@@ -1,7 +1,6 @@
 package com.wallissoftware.byos.pack;
 
 import lombok.Data;
-import lombok.Value;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,4 +20,14 @@ public class UrlInfo {
     keyWeights.put(key, keyWeights.getOrDefault(key, 0L) + weight);
   }
 
+  public void removeKeyWeights(long minWeight) {
+    keyWeights.entrySet().removeIf(e-> e.getValue() < minWeight);
+  }
+
+  public String getTitle() {
+    if (title.length() > 512) {
+      return title.substring(0, 512);
+    }
+    return title;
+  }
 }
